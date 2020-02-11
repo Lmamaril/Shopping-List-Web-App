@@ -1,6 +1,6 @@
 const input = document.getElementById('add-input');
 const addBtn = document.getElementById('add-btn');
-const ul = document.getElementById('list-items');
+const listItems = document.getElementById('list-items');
 
 function addButton(li){
     let remove = document.createElement('button');
@@ -16,6 +16,14 @@ addBtn.addEventListener('click', ()=>{
     li.className = 'd-flex justify-content-between px-5 mx-5 py-2';
     li.textContent = item;
     addButton(li)
-    ul.appendChild(li);
+    listItems.appendChild(li);
     input.value = '';
 });
+
+listItems.addEventListener('click', (event) =>{
+    if (event.target.tagName == 'BUTTON') {
+        let li = event.target.parentNode;
+        let ul = li.parentNode;
+        ul.removeChild(li);
+    }
+})
