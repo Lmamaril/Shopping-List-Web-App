@@ -3,11 +3,41 @@ const addBtn = document.getElementById('add-btn');
 const listItems = document.getElementById('list-items');
 
 function addButton(li){
+/*
+
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-secondary">Left</button>
+  <button type="button" class="btn btn-secondary">Middle</button>
+  <button type="button" class="btn btn-secondary">Right</button>
+</div>
+*/
+    let buttons = document.createElement('div');
+    buttons.className = "btn-grp";
+    buttons.setAttribute('role', 'group');
+    buttons.setAttribute('aria-labeled', 'buttonsGroup');
+
+    let up = document.createElement('button');
+    up.setAttribute('type', 'button');
+    up.className = 'btn btn-secondary mx-1 up';
+    up.style = 'color: white; background-color: #138086';
+    up.textContent = '  Up  ';
+    buttons.appendChild(up);
+
+    let down = document.createElement('button');
+    down.setAttribute('type', 'button');
+    down.className = 'btn btn-secondary mx-1 down ';
+    down.style = 'color: white; background-color: #534666';
+    down.textContent = ' Down ';
+    buttons.appendChild(down);
+
     let remove = document.createElement('button');
-    remove.className = 'btn remove ';
-    remove.style = 'color: white; background-color: #534666';
-    remove.textContent = 'x';
-    li.appendChild(remove);
+    remove.setAttribute('type', 'button');
+    remove.className = 'btn btn-secondary mx-1 remove';
+    remove.style = 'color: white; background-color: #CD7672';
+    remove.textContent = 'Delete';
+    buttons.appendChild(remove);
+    
+    li.appendChild(buttons);
 }
 
 addBtn.addEventListener('click', ()=>{
