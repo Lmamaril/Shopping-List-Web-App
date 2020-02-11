@@ -18,21 +18,24 @@ function addButton(li){
 
     let up = document.createElement('button');
     up.setAttribute('type', 'button');
-    up.className = 'btn btn-secondary mx-1 up';
+    up.id = 'up';
+    up.className = 'btn btn-secondary mx-1';
     up.style = 'color: white; background-color: #138086';
     up.textContent = '  Up  ';
     buttons.appendChild(up);
 
     let down = document.createElement('button');
     down.setAttribute('type', 'button');
-    down.className = 'btn btn-secondary mx-1 down ';
+    down.id = 'down';
+    down.className = 'btn btn-secondary mx-1';
     down.style = 'color: white; background-color: #534666';
     down.textContent = ' Down ';
     buttons.appendChild(down);
 
     let remove = document.createElement('button');
+    remove.id = 'remove';
     remove.setAttribute('type', 'button');
-    remove.className = 'btn btn-secondary mx-1 remove';
+    remove.className = 'btn btn-secondary mx-1';
     remove.style = 'color: white; background-color: #CD7672';
     remove.textContent = 'Delete';
     buttons.appendChild(remove);
@@ -54,7 +57,19 @@ addBtn.addEventListener('click', ()=>{
 
 listItems.addEventListener('click', (event) =>{
     if (event.target.tagName == 'BUTTON') {
-        let li = event.target.parentNode;
-        listItems.removeChild(li);
+        if (event.target.id == 'remove') {
+            let li = event.target.parentNode.parentNode;
+            listItems.removeChild(li);
+        }
+        else if (event.target.id == 'up') {
+            let li = event.target.parentNode.parentNode;
+            let prevLi = li.previousElementSibling;
+            listItems.insertBefore(li, prevLi);
+        }
+        else if (event.target.id == 'down') {
+            let li = event.target.parentNode.parentNode;
+            let nextLi = li.nextElementSibling;
+            listItems.insertBefore(nextLi,li);
+        }
     }
-})
+});
